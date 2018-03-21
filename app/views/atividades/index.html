@@ -2,7 +2,7 @@
 <head></head>
 
 <body ng-controller="todolist">
-    <h1>{{ app.appName }}</h1>
+    <h1>{{ appName }}</h1>
 
     <table>
         <thead>
@@ -16,7 +16,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="atividade in app.atividadesList">
+            <tr ng-repeat="atividade in atividadesList">
                 <th scope="row"> {{ atividade.id }} </th>
                 <td>{{ atividade.nome }}</td>
                 <td>{{ atividade.descricao }}</td>
@@ -24,17 +24,17 @@
                 <td>{{ atividade.fim }}</td>
                 <td>{{ atividade.estado }}</td>
                 <td>
-                    <button ng-click="app.atividadeRemove(group.id)">Remover</button>
+                    <button ng-click="atividadeRemove(atividade.id)">Remover</button>
                 </td>
             </tr>
             <tr>
                 <th></th>
-                <td><input type="text" ng-model="app.atividadeNewNome"></td>
-                <td><input type="text" ng-model="app.atividadeNewDescricao"></td>
+                <td><input type="text" ng-model="atividadeNewNome"></td>
+                <td><input type="text" ng-model="atividadeNewDescricao"></td>
                 <td></td>
                 <td></td>
-                <td><input type="estado" ng-model="app.atividadeNewEstado"></td>
-                <td><button ng-click="app.atividadeAdd()">Adicionar</button></td>
+                <td><input type="estado" ng-model="atividadeNewEstado"></td>
+                <td><button ng-click="atividadeAdd()">Adicionar</button></td>
             </tr>
         </tbody>
     </table>

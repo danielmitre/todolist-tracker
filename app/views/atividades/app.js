@@ -1,11 +1,11 @@
 angular.module("todolist-tracker", [])
-    .controller('todolist', ['$http', function($http) {
-        this.appName = "TO-DO list online tracker!";
-        this.atividadesList = [];
+    .controller('todolist', function($scope, $http) {
+        $scope.appName = "TO-DO list online tracker!";
+        $scope.atividadesList = [];
 
         function atividadesListRefresh() {
-            $http.get('https://selecao-smartrocket.herokuapp.com/atividades').then(function(response) {
-               self.atividadesList = response.data;
+            $http.get('https://selecao-smartrocket.herokuapp.com/atividades/').then(function(response) {
+               $scope.atividadesList = response.data;
            }, function(response) {
                alert('Erro enquanto atualiza a listagem');
                console.log(response);
@@ -13,28 +13,28 @@ angular.module("todolist-tracker", [])
         }
         atividadesListRefresh();
 
-        this.atividadeAdd = function() {
-            $http.post('https://selecao-smartrocket.herokuapp.com/atividades', {'nome': this.atividadeNewNome,
-                                                            'descricao': this.atividadeNewDescricao,
-                                                            'estado': this.atividadeNewEstado}
+        $scope.atividadeAdd = function() {
+            $http.post('https://selecao-smartrocket.herokuapp.com/atividades/', {'nome': $scope.atividadeNewNome,
+                                                            'descricao': $scope.atividadeNewDescricao,
+                                                            'estado': $scope.atividadeNewEstado}
             ).then(function(response) {
                 atividadesListRefresh();
-                this.atividadeNewNome = '';
-                this.atividadeNewDescricao = '';
-                this.atividadeNewEstado = '';
+                $scope.atividadeNewNome = '';
+                $scope.atividadeNewDescricao = '';
+                $scope.atividadeNewEstado = '';
             }, function(response) {
                 alert('Erro enquanto adicionava');
                 console.log(response);
             });
         };
 
-        this.atividadeRemove = function(todoId) {
-            $http.delete('https://selecao-smartrocket.herokuapp.com/atividades' + todoId).then(function(response) {
+        $scope.atividadeRemove = function(todoId) {
+            $http.delete('https://selecao-smartrocket.herokuapp.com/atividades/' + todoId).then(function(response) {
                 peopleListRefresh();
             }, function(response) {
                 alert('Erro enquanto removia');
                 console.log(response);
             });
         };
-    }]
+    }
 );
