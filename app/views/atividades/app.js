@@ -4,7 +4,7 @@ angular.module("todolist-tracker", [])
         this.atividadesList = [];
 
         function atividadesListRefresh() {
-            $http.get('http://0.0.0.0:3000/atividades').then(function(response) {
+            $http.get('https://selecao-smartrocket.herokuapp.com/atividades').then(function(response) {
                self.atividadesList = response.data;
            }, function(response) {
                alert('Erro enquanto atualiza a listagem');
@@ -14,7 +14,7 @@ angular.module("todolist-tracker", [])
         atividadesListRefresh();
 
         this.atividadeAdd = function() {
-            $http.post('http://0.0.0.0:3000/atividades', {'nome': this.atividadeNewNome,
+            $http.post('https://selecao-smartrocket.herokuapp.com/atividades', {'nome': this.atividadeNewNome,
                                                             'descricao': this.atividadeNewDescricao,
                                                             'estado': this.atividadeNewEstado}
             ).then(function(response) {
@@ -29,7 +29,7 @@ angular.module("todolist-tracker", [])
         };
 
         this.atividadeRemove = function(todoId) {
-            $http.delete('http://0.0.0.0:3000/atividades/' + todoId).then(function(response) {
+            $http.delete('https://selecao-smartrocket.herokuapp.com/atividades' + todoId).then(function(response) {
                 peopleListRefresh();
             }, function(response) {
                 alert('Erro enquanto removia');
