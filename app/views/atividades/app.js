@@ -7,6 +7,13 @@ angular.module("todolist-tracker", [])
         function atividadesListRefresh() {
             $http.get('https://selecao-smartrocket.herokuapp.com/atividades/').then(function(response) {
                $scope.atividadesList = response.data;
+               $("#adividadeNewNome").addClass("ng-untouched ng-pristine");
+               $("#adividadeNewDescricao").addClass("ng-untouched ng-pristine");
+               $("#atividadeNewEstado").addClass("ng-untouched ng-pristine");
+
+               $("#adividadeNewNome").removeClass("ng-touched ng-dirty");
+               $("#adividadeNewDescricao").removeClass("ng-touched ng-dirty");
+               $("#atividadeNewEstado").removeClass("ng-touched ng-dirty");
            }, function(response) {
                alert('Erro enquanto atualiza a listagem');
                console.log(response);
@@ -29,11 +36,26 @@ angular.module("todolist-tracker", [])
             });
         };
 
-        $scope.atividadeRemove = function(todoId) {
-            $http.delete('https://selecao-smartrocket.herokuapp.com/atividades/' + todoId).then(function(response) {
+        $scope.atividadeRemove = function(id) {
+            $http.delete('https://selecao-smartrocket.herokuapp.com/atividades/' + id).then(function(response) {
                 atividadesListRefresh();
             }, function(response) {
                 alert('Erro enquanto removia');
+                console.log(response);
+            });
+        };
+
+
+        $scope.updateModal = function(atividade) {
+            $scope.currAtividadeNome = atividade.nome;
+            $scope.currentEditing = JSON.parse(JSON.stringify(atividade));
+        }
+
+        $scope.atividadeUpdate = function(newData) {
+            $http.put('https://selecao-smartrocket.herokuapp.com/atividades/' + newData.id, newData).then(function(response) {
+                atividadesListRefresh();
+            }, function(response) {
+                alert('Erro enquanto atualizava');
                 console.log(response);
             });
         };

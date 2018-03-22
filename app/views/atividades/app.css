@@ -2,6 +2,14 @@ input.ng-invalid.ng-touched {
     background-color: #f19999;
 }
 
+select.ng-invalid.ng-touched {
+    background-color: #f19999;
+}
+
+textarea.ng-invalid.ng-touched {
+    background-color: #f19999;
+}
+
 .flex-row {
   display: -webkit-box;
   display: -webkit-flex;
@@ -9,7 +17,11 @@ input.ng-invalid.ng-touched {
   display: flex;
 }
 
-.btn-container {
+.btn-add-container {
+    color: #000;
+}
+
+.btn-atividade-container {
     float: right;
 }
 
@@ -23,32 +35,58 @@ input.ng-invalid.ng-touched {
 
 .column-container {
     padding: 0px 12px 0px 12px;
+    overflow: hidden;
+    padding-bottom: 50px;
+    text-align: center;
 }
 
 .todo-column {
     background-color: #f16060;
+    height: 100%;
+    border-radius: 15px;
+    padding-bottom: 30px;
 }
 
 .doing-column {
     background-color: #ffad66;
+    height: 100%;
+    border-radius: 15px;
+    padding-bottom: 30px;
 }
 
 .done-column {
     background-color: #a8d08b;
+    height: 100%;
+    border-radius: 15px;
+    padding-bottom: 30px;
 }
 
 .vertical-spacer {
-    height:50px;
+    height:15px;
+    text-align: center;
 }
 
-.list-row {
-    overflow: hidden;
-}
 
 .list-row .atividade-box {
     padding: 20px 16px 20px 16px;
 }
 
+label {
+    font-family: times;
+    font-size: 1.4em;
+}
+
+h1 {
+    font-size: 3.5em;
+    font-family: palatino;
+    font-variant: small-caps;
+}
+
+h2 {
+    font-size: 2.5em;
+    font-family: palatino;
+    font-variant: small-caps;
+}
 
 .atividade-box dt {
     text-align: left;

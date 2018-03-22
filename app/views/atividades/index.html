@@ -12,69 +12,145 @@
 
 <body ng-controller="todolist">
     <div class="container">
-        <h1>{{ appName }}</h1>
 
-        <div class="row flex-row">
-            <div class=col-lg-4>
-            </div>
-
-            <div class="col-lg-4">
-                <form name="formAdd">
-                    <div>
-                        <input type="text" name="atividadeNewNome" ng-model="atividadeNewNome" required>
-                        <input type="text" name="atividadeNewDescricao" ng-model="atividadeNewDescricao" required>
-                        <select name="atividadeNewEstado" ng-model="atividadeNewEstado" ng-options="e for e in estadosPossiveis" required>
-                        <input type="submit" ng-click="atividadeAdd()" ng-required="formAdd.$valid" ng-disabled="formAdd.$invalid">
-                    </div>
-                </form>
-            </div>
-
-            <div class=col-lg-4>
-            </div>
+        <div class="row">
+            <div class="col-lg-12"></div>
         </div>
 
 
-        <div class="col-lg-13 vertical-spacer"></div>
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>{{ appName }}</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <hr />
+            </div>
+        </div>
 
         <div class="list-row flex-row">
-
             <div class="column-container col-lg-4">
                 <div class="todo-column">
+                    <div class="row">
+                        <div class="col-lg-12"></div>
+                    </div>
+                    <h1>TO-DO</h1>
                     <div class="atividade-box" ng-repeat="atividade in atividadesList | filter: {'estado': 'TODO'}">
                         <dt>
-                            <span class="btn-container">
+                            <span class="btn-atividade-container">
                                     <button ng-click="atividadeRemove(atividade.id)" class="btn btn-lg glyphicon glyphicon-trash btn-delete"></button>
-                                    <button class="btn btn-lg glyphicon glyphicon-edit btn-edit"></button>
+                                    <button ng-click="updateModal(atividade)" data-toggle="modal" data-target="#edit-modal" class="btn btn-lg glyphicon glyphicon-edit btn-edit"></button>
                             </span>
                             {{ atividade.nome }}
                         </dt>
-                        <dd> {{ atividade.descricao }} </dd>
+                        <dd>{{ atividade.descricao }}</dd>
                     </div>
                 </div>
+
             </div>
+
 
             <div class="column-container col-lg-4">
                 <div class="doing-column">
+                    <div class="row">
+                        <div class="col-lg-12"></div>
+                    </div>
+                    <h1>DOING</h1>
                     <div class="atividade-box" ng-repeat="atividade in atividadesList | filter: {'estado': 'DOING'}">
-                        <dt> {{ atividade.nome }} </dt>
-                        <dd> {{ atividade.descricao }} </dd>
+                        <dt>
+                            <span class="btn-atividade-container">
+                                    <button ng-click="atividadeRemove(atividade.id)" class="btn btn-lg glyphicon glyphicon-trash btn-delete"></button>
+                                    <button ng-click="updateModal(atividade)" data-toggle="modal" data-target="#edit-modal" class="btn btn-lg glyphicon glyphicon-edit btn-edit"></button>
+                            </span>
+                            {{ atividade.nome }}
+                        </dt>
+                        <dd>{{ atividade.descricao }}</dd>
                     </div>
                 </div>
             </div>
 
             <div class="column-container col-lg-4">
                 <div class="done-column">
-                    <div class="atividade-box" ng-repeat="atividade in atividadesList | filter: {'estado': 'DOING'}">
-                        <dt> {{ atividade.nome }} </dt>
-                        <dd> {{ atividade.descricao }} </dd>
+                    <div class="row">
+                        <div class="col-lg-12"></div>
+                    </div>
+                    <h1>DONE</h1>
+                    <div class="atividade-box" ng-repeat="atividade in atividadesList | filter: {'estado': 'DONE'}">
+                        <dt>
+                            <span class="btn-atividade-container">
+                                    <button ng-click="atividadeRemove(atividade.id)" class="btn btn-lg glyphicon glyphicon-trash btn-delete"></button>
+                                    <button ng-click="updateModal(atividade)" data-toggle="modal" data-target="#edit-modal" class="btn btn-lg glyphicon glyphicon-edit btn-edit"></button>
+                            </span>
+                            {{ atividade.nome }}
+                        </dt>
+                        <dd>{{ atividade.descricao }}</dd>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-lg-12">
-            <h1> estado: {{ formAdd.atividadeNewNome.$error.required }} </h1>
+
+        <hr />
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <h2>Adicionar nova atividade</h2>
+            </div>
+            <div class="col-lg-3"></div>
         </div>
+
+
+        <!--formulario para insersao-->
+        <div class="row flex-row">
+            <div class="col-lg-3"></div>
+
+            <div class="col-lg-6">
+                <form class="form-group" name="formAdd">
+                    <div>
+                        <label for="atividadeNewNome">Nome: </label><input class="form-control" id="adividadeNewNome" type="text" name="atividadeNewNome" ng-model="atividadeNewNome" required>
+                        <label for="atividadeNewNome">Descrição: </label><textarea class="form-control" id="adividadeNewDescricao" type="text" name="atividadeNewDescricao" ng-model="atividadeNewDescricao" required></textarea>
+                        <label for="atividadeNewNome">Estado atual:</label><select class="form-control" id="atividadeNewEstado" name="atividadeNewEstado" ng-model="atividadeNewEstado" ng-options="e for e in estadosPossiveis" required></select>
+                        <hr />
+                        <input class="form-control" type="submit" ng-click="atividadeAdd()" ng-required="formAdd.$valid" ng-disabled="formAdd.$invalid">
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-lg-3"></div>
+        </div>
+        <!--fim do formulario-->
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title"> {{ currAtividadeNome }}</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-group" name="formUpdate">
+                            <div>
+                                <label for="currentName"> Novo nome:</label> <input class="form-control" type="text" id="currentName" name="currentName" ng-model="currentEditing.nome" required>
+                                <label for="currentDescricao"> Nova descricao:</label> <textarea class="form-control" type="text" id="currentDescricao" name="currentDescricao" ng-model="currentEditing.descricao" required></textarea>
+                                <label for="currentEstado"> Estado atual:</label> <select class="form-control" id="currentEstado" name="currentEstado" ng-model="currentEditing.estado" ng-options="e for e in estadosPossiveis" required></select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" ng-click="atividadeUpdate(currentEditing)" data-dismiss="modal" ng-required="formUpdate.$valid" ng-disabled="formUpdate.$invalid">Atualizar Atividade</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--fim do Modal-->
 
     </div>
 </body>
