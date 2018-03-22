@@ -10,15 +10,16 @@ textarea.ng-invalid.ng-touched {
     background-color: #f19999;
 }
 
+/*
 .flex-row {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-}
+}*/
 
 .btn-add-container {
-    color: #000;
+    text-align: right;
 }
 
 .btn-atividade-container {
@@ -68,7 +69,7 @@ textarea.ng-invalid.ng-touched {
 
 
 .list-row .atividade-box {
-    padding: 20px 16px 20px 16px;
+    padding: 6px 18px 6px 18px;
 }
 
 label {
@@ -86,6 +87,10 @@ h2 {
     font-size: 2.5em;
     font-family: palatino;
     font-variant: small-caps;
+}
+
+hr {
+    border-color: #7b797b;
 }
 
 .atividade-box dt {

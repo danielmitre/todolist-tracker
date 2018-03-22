@@ -24,12 +24,17 @@
             </div>
         </div>
 
+
         <div class="row">
-            <div class="col-lg-12">
-                <hr />
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+            </div>
+            <div class="col-lg-3 btn-add-container">
+                <button data-toggle="modal" data-target="#add-modal" class="btn btn-lg glyphicon glyphicon-plus btn-add"></button>
             </div>
         </div>
 
+        <hr />
         <div class="list-row flex-row">
             <div class="column-container col-lg-4">
                 <div class="todo-column">
@@ -38,6 +43,7 @@
                     </div>
                     <h1>TO-DO</h1>
                     <div class="atividade-box" ng-repeat="atividade in atividadesList | filter: {'estado': 'TODO'}">
+                        <hr />
                         <dt>
                             <span class="btn-atividade-container">
                                     <button ng-click="atividadeRemove(atividade.id)" class="btn btn-lg glyphicon glyphicon-trash btn-delete"></button>
@@ -59,6 +65,7 @@
                     </div>
                     <h1>DOING</h1>
                     <div class="atividade-box" ng-repeat="atividade in atividadesList | filter: {'estado': 'DOING'}">
+                        <hr />
                         <dt>
                             <span class="btn-atividade-container">
                                     <button ng-click="atividadeRemove(atividade.id)" class="btn btn-lg glyphicon glyphicon-trash btn-delete"></button>
@@ -78,6 +85,7 @@
                     </div>
                     <h1>DONE</h1>
                     <div class="atividade-box" ng-repeat="atividade in atividadesList | filter: {'estado': 'DONE'}">
+                        <hr />
                         <dt>
                             <span class="btn-atividade-container">
                                     <button ng-click="atividadeRemove(atividade.id)" class="btn btn-lg glyphicon glyphicon-trash btn-delete"></button>
@@ -91,40 +99,37 @@
             </div>
         </div>
 
-
         <hr />
-        <div class="row">
-            <div class="col-lg-3"></div>
-            <div class="col-lg-6">
-                <h2>Adicionar nova atividade</h2>
-            </div>
-            <div class="col-lg-3"></div>
-        </div>
 
-
-        <!--formulario para insersao-->
-        <div class="row flex-row">
-            <div class="col-lg-3"></div>
-
-            <div class="col-lg-6">
-                <form class="form-group" name="formAdd">
-                    <div>
-                        <label for="atividadeNewNome">Nome: </label><input class="form-control" id="adividadeNewNome" type="text" name="atividadeNewNome" ng-model="atividadeNewNome" required>
-                        <label for="atividadeNewNome">Descrição: </label><textarea class="form-control" id="adividadeNewDescricao" type="text" name="atividadeNewDescricao" ng-model="atividadeNewDescricao" required></textarea>
-                        <label for="atividadeNewNome">Estado atual:</label><select class="form-control" id="atividadeNewEstado" name="atividadeNewEstado" ng-model="atividadeNewEstado" ng-options="e for e in estadosPossiveis" required></select>
-                        <hr />
-                        <input class="form-control" type="submit" ng-click="atividadeAdd()" ng-required="formAdd.$valid" ng-disabled="formAdd.$invalid">
+        <!--Modal para insersao-->
+        <div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title"> Adicionar nova atividade </h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                </form>
+                    <div class="modal-body">
+                        <form class="form-group" name="formAdd">
+                            <div>
+                                <label for="atividadeNewNome">Nome: </label><input class="form-control" id="adividadeNewNome" type="text" name="atividadeNewNome" ng-model="atividadeNewNome" required>
+                                <label for="atividadeNewNome">Descrição: </label><textarea class="form-control" id="adividadeNewDescricao" type="text" name="atividadeNewDescricao" ng-model="atividadeNewDescricao" required></textarea>
+                                <label for="atividadeNewNome">Estado atual:</label><select class="form-control" id="atividadeNewEstado" name="atividadeNewEstado" ng-model="atividadeNewEstado" ng-options="e for e in estadosPossiveis" required></select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" ng-click="atividadeAdd()" data-dismiss="modal" ng-required="formAdd.$valid" ng-disabled="formAdd.$invalid">Inserir Atividade</button>
+                    </div>
+                </div>
             </div>
-
-            <div class="col-lg-3"></div>
         </div>
-        <!--fim do formulario-->
+        <!--fim do modal-->
 
-
-
-        <!-- Modal -->
+        <!-- Modal para editar -->
         <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
