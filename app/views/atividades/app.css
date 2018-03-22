@@ -1,0 +1,65 @@
+input.ng-invalid.ng-touched {
+    background-color: #f19999;
+}
+
+.flex-row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.btn-container {
+    float: right;
+}
+
+.btn-delete {
+    background-color: #00000000;
+}
+
+.btn-edit {
+    background-color: #00000000;
+}
+
+.column-container {
+    padding: 0px 12px 0px 12px;
+}
+
+.todo-column {
+    background-color: #f16060;
+}
+
+.doing-column {
+    background-color: #ffad66;
+}
+
+.done-column {
+    background-color: #a8d08b;
+}
+
+.vertical-spacer {
+    height:50px;
+}
+
+.list-row {
+    overflow: hidden;
+}
+
+.list-row .atividade-box {
+    padding: 20px 16px 20px 16px;
+}
+
+
+.atividade-box dt {
+    text-align: left;
+    font-family: palatino;
+    font-size: 2em;
+    font-variant: small-caps;
+}
+
+.atividade-box dd {
+    padding-top: 6px;
+    text-align: center;
+    font-family: times;
+    font-size: 1.4em;
+}
