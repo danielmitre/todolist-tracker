@@ -5,4 +5,4 @@ Is a angular+rails app to track your to-do goals
 https://selecao-smartrocket.herokuapp.com/
 
 ## front-end deploy link:
-https://danielbgmitre.github.io/todolist-tracker/app/views/atividades/index.html
+https://danielmitre.github.io/todolist-tracker/app/views/atividades/index.html
